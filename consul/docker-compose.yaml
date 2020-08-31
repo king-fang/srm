@@ -1,0 +1,66 @@
+version: '3'
+services:
+  srm_consul_master_server_140:
+    image: consul:latest
+    container_name: srm_consul_master_server_140
+    networks:
+      srm:
+        ipv4_address: '172.33.33.140'
+    ports:
+      - 8500:8500
+    command: agent -server -ui -bootstrap-expect=3 -data-dir=/tmp/consul -node=srm_consul_master_server_140 -bind=172.33.33.140 -client=0.0.0.0
+
+  srm_consul_slaves_server_150:
+    image: consul:latest
+    container_name: srm_consul_master_server_150
+    depends_on:
+      - srm_consul_master_server_140
+    networks:
+      srm:
+        ipv4_address: '172.33.33.150'
+    ports:
+      - 8510:8500
+    command: agent -server -ui -bootstrap-expect=3 -data-dir=/tmp/consul -node=srm_consul_slaves_server_150 -bind=172.33.33.150 -client=0.0.0.0 -join 172.33.33.140
+
+  srm_consul_slaves_server_160:
+    image: consul:latest
+    container_name: srm_consul_master_server_160
+    depends_on:
+      - srm_consul_master_server_140
+    networks:
+      srm:
+        ipv4_address: '172.33.33.160'
+    ports:
+      - 8520:8500
+    command: agent -server -data-dir /tmp/consul -node=srm_consul_slaves_server_160 -bind=172.33.33.160 -client=0.0.0.0 -ui -join 172.33.33.140
+
+  srm_consul_client_170:
+    image: consul:latest
+    container_name: srm_consul_client_170
+    depends_on:
+      - srm_consul_master_server_140
+    networks:
+      srm:
+        ipv4_address: '172.33.33.170'
+    ports:
+      - 8530:8500
+    command: agent -data-dir /tmp/consul -node=srm_consul_client_170 -bind=172.33.33.170 -ui -client=0.0.0.0 -join 172.33.33.140
+
+  srm_consul_client_180:
+    image: consul:latest
+    container_name: srm_consul_client_180
+    depends_on:
+      - srm_consul_master_server_140
+    networks:
+      srm:
+        ipv4_address: '172.33.33.180'
+    ports:
+      - 8540:8500
+    command: agent -data-dir /tmp/consul -node=srm_consul_client_180 -bind=172.33.33.180 -ui -client=0.0.0.0 -join 172.33.33.140
+
+networks:
+  srm:
+    ipam:
+      config:
+        - subnet: 172.33.33.0/24
+

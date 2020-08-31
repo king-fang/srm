@@ -1,0 +1,1 @@
+server 172.22.22.110:18306 weight=1 max_fails=2 fail_timeout=10s;
