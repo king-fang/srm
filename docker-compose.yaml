@@ -1,5 +1,33 @@
 version: '3'
 services:
+  srm_haproxy_server_173_3: # 这个表示服务的名称，课自定义; 注意不是容器名称
+    image: haproxy # 指定容器的镜像文件
+    ports: # 配置容器与宿主机的端口
+      - "8103:8100" # web监听端口
+      - "5603:5600" # 反向代理 mq 的端口
+    networks: ## 引入外部预先定义的网段
+      haproxy:
+        ipv4_address: 173.200.7.3   #设置ip地址
+    privileged: true # 让程序在root下运行
+    volumes:
+      - "./services/haproxy:/haproxy"
+      - "./services/haproxy/keepalived/3:/keepalived"
+    container_name: srm_haproxy_server_173_3 # 这是容器的名称
+    command: haproxy -f /haproxy/haproxy.cfg
+  srm_haproxy_server_173_2: # 这个表示服务的名称，课自定义; 注意不是容器名称
+    image: haproxy # 指定容器的镜像文件
+    ports: # 配置容器与宿主机的端口
+      - "8102:8100"
+      - "5602:5600"
+    networks: ## 引入外部预先定义的网段
+      haproxy:
+        ipv4_address: 173.200.7.2   #设置ip地址
+    privileged: true
+    volumes:
+      - "./services/haproxy:/haproxy"
+      - "./services/haproxy/keepalived/2:/keepalived"
+    container_name: srm_haproxy_server_173_2 # 这是容器的名称
+    command: haproxy -f /haproxy/haproxy.cfg
   srm_nginx_173_100:
     build:
       context: ./services/nginx
@@ -11,10 +39,11 @@ services:
       - ./services/nginx/nginx.conf:/conf/nginx.conf:ro
       - ./logs/nginx:/var/log/nginx/:rw
     networks:
-      nginx:
+      haproxy:
         ipv4_address: '173.200.7.100'
 networks:
-  nginx:
-    ipam:
+  haproxy:
+    driver: bridge
+    ipam: #定义网段
       config:
-        - subnet: 173.220.7.0/24
+        - subnet: "173.200.7.0/24"

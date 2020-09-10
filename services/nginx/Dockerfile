@@ -24,7 +24,11 @@ RUN cd /data \
    && tar -zxvf nginx-1.14.1.tar.gz \
    && cd nginx-1.14.1 \
    && wget https://github.com/weibocom/nginx-upsync-module/archive/v2.1.0.tar.gz && tar -zxvf v2.1.0.tar.gz \
-   && ./configure --prefix=/usr/local/nginx --with-pcre --add-module=nginx-upsync-module-2.1.0 --user=nginx --group=nginx \
+   && ./configure --prefix=/usr/local/nginx \
+   --with-pcre --add-module=nginx-upsync-module-2.1.0 \
+   --with-http_stub_status_module --with-http_ssl_module \
+   --with-stream --with-stream_ssl_module \
+    --user=nginx --group=nginx \
    && make && make install
 
 #全局使用nginx,软链接

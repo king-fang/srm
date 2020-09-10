@@ -14,7 +14,8 @@ use App\Rpc\Lib\GoodsInterface;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Rpc\Client\Annotation\Mapping\Reference;
-
+use Swoft\Http\Message\Response;
+use Swoft\Http\Message\ContentType;
 /**
  * Class GoodsController
  *
@@ -34,14 +35,15 @@ class GoodsController
     /**
      * @RequestMapping("list")
      *
-     * @return array
+     * @param Response $response
+     * @return Response
      */
-    public function getList(): array
+    public function getList(Response $response): Response
     {
         $result  = $this->goodsService->getList(12, 'type');
-        return [
-            'client_ip' => env('SRM_HOST'),
-            'list' => $result['list']
-        ];
+        $ip = '客户端IP:'.env('SRM_HOST');
+        $response = $response->withContent('<html lang="en"><h1>'.$ip.'</h1> <h1>'.$result['list'].'</h1></html>');
+        $response = $response->withContentType(ContentType::HTML);
+        return $response;
     }
 }

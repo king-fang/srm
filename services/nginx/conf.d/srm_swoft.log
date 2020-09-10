@@ -1,1 +1,2 @@
-server 172.22.22.110:18306 weight=1 max_fails=2 fail_timeout=10s;
+server 106.54.7.136:18326 weight=1 max_fails=2 fail_timeout=10s;
+server 106.54.7.136:18336 weight=1 max_fails=2 fail_timeout=10s;

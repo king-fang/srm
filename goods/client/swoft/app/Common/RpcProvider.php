@@ -66,6 +66,8 @@ class RpcProvider implements ProviderInterface
                 }
             }
         }
-        return $address;
+        return [
+            '106.54.7.136:18317'
+        ];
     }
 }
