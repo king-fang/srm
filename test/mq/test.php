@@ -7,10 +7,13 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 use PhpAmqpLib\Message\AMQPMessage;
 
-$con = new AMQPStreamConnection('127.0.0.1', 5603, 'admin', 'password');
+$con = new AMQPStreamConnection('127.0.0.1', 8103, 'admin', 'password');
 
 var_dump($con);
 
-$re = $con->channel();
+$channel = $con->channel();
 
-var_dump($re);
+$channel->queue_declare('qos_queue', false, true, false, false);
+
+
+var_dump($channel->basic_qos(null, 10, null));
