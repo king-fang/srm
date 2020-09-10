@@ -13,7 +13,11 @@ function user_func(): string
     return 'hello';
 }
 
-
+/**
+ * 获取Server 名称
+ * @param $serverName
+ * @return string
+ */
 function getSrmConsulServerId($serverName) {
     $host = explode('.',env('SRM_HOST'));
     return $serverName.'_'.$host[0].'_'.$host[3];

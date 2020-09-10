@@ -43,7 +43,7 @@ class DeregisterServiceListener implements EventHandlerInterface
      */
     public function handle(EventInterface $event): void
     {
-        $httpServer = $event->getTarget();
+//        $httpServer = $event->getTarget();
 
         $this->agent->deregisterService(getSrmConsulServerId($this->serverName));
     }

@@ -1,0 +1,44 @@
+version: '3.6'
+services:
+  srm_rabbitmq_174_2:
+    image: rabbitmq:3.7-management
+    networks:
+      rabbitmq:
+        ipv4_address: '174.220.7.2'
+    container_name: 'srm_rabbitmq_174_2'
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    hostname: mq2
+    volumes:
+      - "./2:/var/lib/rabbitmq"
+  srm_rabbitmq_174_3:
+    image: rabbitmq:3.7-management
+    networks:
+      rabbitmq:
+        ipv4_address: '174.220.7.3'
+    container_name: 'srm_rabbitmq_174_3'
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+    hostname: mq3
+    volumes:
+      - "./3:/var/lib/rabbitmq"
+  srm_rabbitmq_174_4:
+    image: rabbitmq:3.7-management
+    networks:
+      rabbitmq:
+        ipv4_address: '174.220.7.4'
+    container_name: 'srm_rabbitmq_174_4'
+    ports:
+      - "15674:15672"
+      - "5674:5672"
+    hostname: mq4
+    volumes:
+      - "./4:/var/lib/rabbitmq"
+networks:
+  rabbitmq:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 174.220.7.0/24
