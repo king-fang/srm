@@ -1,4 +1,4 @@
 <?php
 return [
-    'consul_server' => 'srm_goods_server'
+    'consul_server' => 'srm_'.env('SRM_CONSUL_SERVER_NAME').'_client'
 ];

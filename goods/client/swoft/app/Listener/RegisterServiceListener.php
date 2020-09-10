@@ -54,6 +54,6 @@ class RegisterServiceListener implements EventHandlerInterface
     {
         $socket = env('SRM_CONSUL_CHECK_IP').':'.env('SRM_CONSUL_CHECK_PORT');
         // 商品客户端注册
-        $this->kv->put('/upstreams/srm_swoft/'.$socket,'{"weight":1, "max_fails":2, "fail_timeout":10}');
+        $this->kv->put('/upstreams/'.$this->serverName.'/'.$socket,'{"weight":1, "max_fails":2, "fail_timeout":10}');
     }
 }

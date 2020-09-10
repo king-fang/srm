@@ -67,7 +67,7 @@ class RegisterServiceListener implements EventHandlerInterface
                 'Warning' => 1
             ],
             'Check' => [
-                'name' => 'srm.goods.server',
+                'name' => 'srm.'.env("SRM_CONSUL_SERVER_NAME").'.server',
                 $srmConsulCheckType => "{$srmConsulCheckIp}:$srmConsulCheckPort",
                 'interval' => '10s',  // consul 每隔10s检测
                 'timeout' => '2s'   // 2秒超时

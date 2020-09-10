@@ -56,7 +56,7 @@ class DeregisterServiceListener implements EventHandlerInterface
 
         $socket = env('SRM_CONSUL_CHECK_IP').':'.env('SRM_CONSUL_CHECK_PORT');
         // 商品客户端注册
-        $this->kv->delete('/upstreams/srm_swoft/'.$socket);
+        $this->kv->delete('/upstreams/'.$this->serverName.'/'.$socket);
 //        $this->agent->deregisterService(getSrmConsulServerId($this->serverName));
     }
 }

@@ -10,7 +10,7 @@ services:
       - "18317:18307"
     volumes:
       - './server/swoft/:/var/www/:rw'
-    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18317'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18317?-n:test'
   srm_goods_server_172_120:
     image: srm_swoft
     networks:
@@ -21,7 +21,7 @@ services:
       - "18327:18307"
     volumes:
       - './server/swoft/:/var/www/:rw'
-    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18327'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18327?-n:test'
   srm_goods_server_172_130:
     image: srm_swoft
     networks:
@@ -32,7 +32,7 @@ services:
       - "18337:18307"
     volumes:
       - './server/swoft/:/var/www/:rw'
-    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18337'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18337?-n:test'
   srm_goods_client_172_210:
     image: srm_swoft
     networks:
@@ -43,7 +43,7 @@ services:
       - "18316:18306"
     volumes:
       - './client/swoft/:/var/www/:rw'
-    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18316'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18316?-n:test'
   srm_goods_client_172_220:
     image: srm_swoft
     networks:
@@ -54,7 +54,7 @@ services:
       - "18326:18306"
     volumes:
       - './client/swoft/:/var/www/:rw'
-    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18326'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18326?-n:test'
   srm_goods_client_172_230:
     image: srm_swoft
     networks:
@@ -65,7 +65,7 @@ services:
       - "18336:18306"
     volumes:
       - './client/swoft/:/var/www/:rw'
-    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18336'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18336?-n:test'
 networks:
   swoft_server:
     ipam:
