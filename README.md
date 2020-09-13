@@ -19,3 +19,8 @@
 商品服务：http://106.54.7.136:81/goods/list
 
 consul ui： http://106.54.7.136:8540/
+
+
+### keepalied
+
+ifconfig eth0:0 173.200.7.100 netmask 255.255.255.0 up

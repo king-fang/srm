@@ -34,6 +34,7 @@ services:
     container_name: srm_nginx_173_100
     ports:
       - "81:80"
+      - "82:5600"
     volumes:
       - ./services/nginx/conf.d:/conf/conf.d/:rw
       - ./services/nginx/nginx.conf:/conf/nginx.conf:ro
