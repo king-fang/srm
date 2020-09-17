@@ -1,0 +1,73 @@
+version: '3'
+services:
+  srm_order_server_172_110:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.110'
+    container_name: 'srm_goods_server_172_110'
+    ports:
+      - "18347:18307"
+    volumes:
+      - './server/swoft/:/var/www/:rw'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18317?-n:order'
+  srm_goods_server_172_120:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.120'
+    container_name: 'srm_goods_server_172_120'
+    ports:
+      - "18357:18307"
+    volumes:
+      - './server/swoft/:/var/www/:rw'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18327?-n:order'
+  srm_goods_server_172_130:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.130'
+    container_name: 'srm_goods_server_172_130'
+    ports:
+      - "18367:18307"
+    volumes:
+      - './server/swoft/:/var/www/:rw'
+    command: 'php bin/swoft rpc:start ext_init=-t:tcp?-i:106.54.7.136?-p:18337?-n:order'
+  srm_goods_client_172_210:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.210'
+    container_name: 'srm_goods_client_172_210'
+    ports:
+      - "18346:18306"
+    volumes:
+      - './client/swoft/:/var/www/:rw'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18316?-n:order'
+  srm_goods_client_172_220:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.220'
+    container_name: 'srm_goods_client_172_220'
+    ports:
+      - "18356:18306"
+    volumes:
+      - './client/swoft/:/var/www/:rw'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18326?-n:order'
+  srm_goods_client_172_230:
+    image: srm_swoft
+    networks:
+      swoft_server:
+        ipv4_address: '172.220.7.230'
+    container_name: 'srm_goods_client_172_230'
+    ports:
+      - "18366:18306"
+    volumes:
+      - './client/swoft/:/var/www/:rw'
+    command: 'php bin/swoft http:start ext_init=-i:106.54.7.136?-p:18336?-n:order'
+networks:
+  swoft_server:
+    ipam:
+      config:
+        - subnet: 172.220.7.0/24

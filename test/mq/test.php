@@ -1,15 +1,13 @@
 <?php
 
-require './vendor/autoload.php';
+require 'vendor/autoload.php';
 
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 use PhpAmqpLib\Message\AMQPMessage;
 
-$con = new AMQPStreamConnection('127.0.0.1', 8103, 'admin', 'password');
-
-var_dump($con);
+$con = new AMQPStreamConnection('127.0.0.1', 82, 'admin', 'password');
 
 $channel = $con->channel();
 

@@ -1,0 +1,189 @@
+version: '3.6'
+services:
+  # --------------- A ----------------
+  mongos_shard_A_174_2:
+    image: mongo:4.0.0
+    container_name: mongos_shard_A_174_2
+    expose:
+      - 27018
+    # --shardsvr: 这个参数仅仅只是将默认的27017端口改为27018,如果指定--port参数，可用不需要这个参数
+    # --directoryperdb：每个数据库使用单独的文件夹
+    # --replSet：定义是副本集分片
+    # shard_A 这是代表整个分片的名称
+    command: mongod --shardsvr --directoryperdb --replSet shard_A
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/A/174_2:/data/db
+    privileged: true
+    # 必须要配置容器内存大小，不然mongodb可能会吃光内存
+    # 1G => 1024mb  1mb =>1024kb 1kb => 1024bt
+    deploy:
+      resources:
+        limits:
+           memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.2   #设置ip地址
+
+  mongos_secondary_A_174_3:
+    image: mongo:4.0.0
+    container_name: mongos_secondary_A_174_3
+    expose:
+      - 27018
+    command: mongod --shardsvr --directoryperdb --replSet shard_A
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/A/174_3:/data/db
+    privileged: true
+    deploy:
+      resources:
+         limits:
+            memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.3   #设置ip地址
+
+  mongos_arbiter_A_174_4:
+    image: mongo:4.0.0
+    container_name: mongos_arbiter_A_174_4
+    expose:
+      - 27018
+    command: mongod --shardsvr --directoryperdb --replSet shard_A
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/A/174_4:/data/db
+    privileged: true
+    deploy:
+      resources:
+         limits:
+            memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.4   #设置ip地址
+
+  # ----------- B --------------------
+
+  mongos_shard_B_174_6:
+    image: mongo:4.0.0
+    container_name: mongos_shard_B_174_6
+    expose:
+      - 27018
+    command: mongod --shardsvr --directoryperdb --replSet shard_B
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/B/174_6:/data/db
+    privileged: true
+    deploy:
+      resources:
+         limits:
+            memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.6   #设置ip地址
+
+  mongos_secondary_B_174_7:
+    image: mongo:4.0.0
+    container_name: mongos_secondary_B_174_7
+    expose:
+      - 27018
+    command: mongod --shardsvr --directoryperdb --replSet shard_B
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/B/174_7:/data/db
+    privileged: true
+    deploy:
+      resources:
+         limits:
+            memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.7   #设置ip地址
+
+  mongos_arbiter_B_174_8:
+    image: mongo:4.0.0
+    container_name: mongos_arbiter_B_174_8
+    expose:
+      - 27018
+    command: mongod --shardsvr --directoryperdb --replSet shard_B
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/B/174_8:/data/db
+    privileged: true
+    deploy:
+      resources:
+         limits:
+            memory: 1G
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.8   #设置ip地址
+
+  # ---- config -----
+  mongo_config_174_10:
+    image: mongo:4.0.0
+    container_name: mongo_config_174_10
+    expose:
+      - 27019
+    # --configsvr: 这个参数仅仅是将默认端口由27017改为27019, 如果指定--port可不添加该参数
+    # fates-mongo-config: 这是配置服务器集群的名称
+    # --smallfiles: 代表是一个数据库一个文件
+    command: mongod --configsvr --directoryperdb --replSet fates-mongo-config --smallfiles
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/config/174_10:/data/configdb
+    depends_on:
+      - mongos_shard_A_174_2
+      - mongos_secondary_A_174_3
+      - mongos_arbiter_A_174_4
+      - mongos_shard_B_174_6
+      - mongos_secondary_B_174_7
+      - mongos_arbiter_B_174_8
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.10   #设置ip地址
+  mongo_config_174_20:
+    image: mongo:4.0.0
+    container_name: mongo_config_174_20
+    expose:
+      - 27019
+    command: mongod --configsvr --directoryperdb --replSet fates-mongo-config --smallfiles
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /www/wwwroot/2007_SRM/mongodb/config/174_20:/data/configdb
+    depends_on:
+      - mongos_shard_A_174_2
+      - mongos_secondary_A_174_3
+      - mongos_arbiter_A_174_4
+      - mongos_shard_B_174_6
+      - mongos_secondary_B_174_7
+      - mongos_arbiter_B_174_8
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.20   #设置ip地址
+
+  # ----- route ------
+  # mongodb:27017
+  # route:27017
+  # config:27019
+  # arbiter-secondary-shard:27018
+ 
+  mongos_route_174_200:
+    image: mongo:4.0.0
+    container_name: mongos_route_174_200
+    # mongo3.6版默认绑定IP为127.0.0.1，此处绑定0.0.0.0是允许其他容器或主机可以访问
+    command: mongos --configdb fates-mongo-config/174.200.7.20:27019,174.200.7.10:27019 --bind_ip 0.0.0.0 --port 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - /etc/localtime:/etc/localtime
+    depends_on:
+      - mongo_config_174_10
+      - mongo_config_174_20
+    networks: ## 引入外部预先定义的网段
+      mongo:
+         ipv4_address: 174.200.7.200   #设置ip地址
+networks:
+  mongo:
+    driver: bridge
+    ipam: #定义网段
+      config:
+        - subnet: "174.200.7.0/24"

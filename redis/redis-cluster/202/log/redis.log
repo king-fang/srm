@@ -1,0 +1,84 @@
+1:C 17 Sep 2020 14:03:27.149 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 17 Sep 2020 14:03:27.152 # Redis version=5.0.1, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 17 Sep 2020 14:03:27.158 # Configuration loaded
+1:M 17 Sep 2020 14:03:27.172 * No cluster configuration found, I'm 6432287bb18d3d5b04e0818089467594cabd56f9
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.1 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in cluster mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 1
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+1:M 17 Sep 2020 14:03:27.205 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+1:M 17 Sep 2020 14:03:27.208 # Server initialized
+1:M 17 Sep 2020 14:03:27.210 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+1:M 17 Sep 2020 14:03:27.214 * Ready to accept connections
+1:M 17 Sep 2020 14:06:08.519 # configEpoch set to 3 via CLUSTER SET-CONFIG-EPOCH
+1:M 17 Sep 2020 14:06:08.767 # IP address for this node updated to 192.21.2.202
+1:M 17 Sep 2020 14:06:13.442 * Replica 192.21.2.205:6379 asks for synchronization
+1:M 17 Sep 2020 14:06:13.443 * Partial resynchronization not accepted: Replication ID mismatch (Replica asked for '9a7a183bc3d8b37f43253be019b869e5b26ce708', my replication IDs are '66fc147afce13f2ec7a6350d6a5002e4f3f2ba5a' and '0000000000000000000000000000000000000000')
+1:M 17 Sep 2020 14:06:13.446 * Starting BGSAVE for SYNC with target: disk
+1:M 17 Sep 2020 14:06:13.448 * Background saving started by pid 10
+10:C 17 Sep 2020 14:06:13.451 * DB saved on disk
+10:C 17 Sep 2020 14:06:13.453 * RDB: 0 MB of memory used by copy-on-write
+1:M 17 Sep 2020 14:06:13.530 * Background saving terminated with success
+1:M 17 Sep 2020 14:06:13.533 # Cluster state changed: ok
+1:M 17 Sep 2020 14:06:13.535 * Synchronization with replica 192.21.2.205:6379 succeeded
+1:M 17 Sep 2020 14:07:10.003 # Possible SECURITY ATTACK detected. It looks like somebody is sending POST or Host: commands to Redis. This is likely due to an attacker attempting to use Cross Protocol Scripting to compromise your Redis instance. Connection aborted.
+1:M 17 Sep 2020 14:07:10.093 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:11.125 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:12.137 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:13.163 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:14.182 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:15.282 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:40.704 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:41.748 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:42.763 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:43.963 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:44.000 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:45.051 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:45.078 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:46.088 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:46.167 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:47.143 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:48.162 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:49.142 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:50.028 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:51.220 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:51.272 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:52.022 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:52.329 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:52.343 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:52.827 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:53.092 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:53.341 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:53.361 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:53.889 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:54.116 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:55.484 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:55.519 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:55.533 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:55.553 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:57.229 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:57.247 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:57.268 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:57.283 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:58.400 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:58.412 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:07:59.170 # Bad message length or signature received from Cluster bus.
+1:M 17 Sep 2020 14:08:00.258 # Bad message length or signature received from Cluster bus.
+1:signal-handler (1600352549) Received SIGTERM scheduling shutdown...
+1:M 17 Sep 2020 14:22:29.903 # User requested shutdown...
+1:M 17 Sep 2020 14:22:29.926 * Removing the pid file.
+1:M 17 Sep 2020 14:22:29.928 # Redis is now ready to exit, bye bye...

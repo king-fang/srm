@@ -1,0 +1,89 @@
+version: "3"
+services:
+  node-200:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.200
+    container_name: node-200
+    ports:
+      - "6390:6379"
+      - "16320:16379"
+    volumes:
+      - ./200:/redis/:rw
+    command: redis-server /redis/conf/redis.conf
+    restart: always
+  node-201:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.201
+    container_name: node-201
+    ports:
+      - "6391:6379"
+      - "16321:16379"
+    volumes:
+      - ./201:/redis/:rw
+    command: redis-server /redis/conf/redis.conf
+    restart: always
+
+  node-202:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.202
+    container_name: node-202
+    ports:
+      - "6392:6379"
+      - "16322:16379"
+    volumes:
+      - ./202:/redis:rw
+    command: redis-server /redis/conf/redis.conf
+
+  node-203:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.203
+    container_name: node-203
+    ports:
+      - "6393:6379"
+      - "16323:16379"
+    volumes:
+      - ./203:/redis:rw
+    command: redis-server /redis/conf/redis.conf
+
+  node-204:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.204
+    container_name: node-204
+    ports:
+      - "6394:6379"
+      - "16324:16379"
+    volumes:
+      - ./204:/redis:rw
+    command: redis-server /redis/conf/redis.conf
+
+  node-205:
+    image: srm_redis
+    networks:
+      redis:
+        ipv4_address: 192.21.2.205
+    container_name: node-205
+    ports:
+      - "6395:6379"
+      - "16325:16379"
+    volumes:
+      - ./205:/redis:rw
+    command: redis-server /redis/conf/redis.conf
+
+networks:
+  redis:
+    driver: bridge
+    ipam: #定义网段
+      config:
+        - subnet: "192.21.2.0/24"
+
+
